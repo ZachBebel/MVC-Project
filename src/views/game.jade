@@ -1,0 +1,17 @@
+extends ./base.jade
+block append style
+  link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login") Hello, #{scores.user}
+    .navlink
+      a(href="/logout") Log out
+  section#addScore
+    form#scoreForm(class="scoreForm", name="scoreForm", action="/game", method="POST")
+      label(for="score") Score:
+      input#score(type="text", name="score", placeholder="Score")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
+      a#addScoreSubmit(class="addScoreSubmit", href="#") Add Score
+    p#errorMessage
+block scripts
+  script(src="/assets/game.js")

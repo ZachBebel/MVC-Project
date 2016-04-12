@@ -1,0 +1,238 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#logo {
+    height: 40px;
+    width: 40;
+    padding-top: 5px;
+    float: left;
+    border-radius: 8px;
+}
+
+nav {
+    width: 100%;
+    height: 50px;
+    background-color: #55acee;
+}
+
+nav:nth-child(1) {
+    padding-left: 25px;
+}
+
+.navlink {
+    padding: 5px;
+    padding-top: 12px;
+    padding-left: 20px;
+    color: white;
+    font-size: 1.3em;
+    float: left;
+}
+
+.navlink a,
+.navlink a:link,
+.navlink a:visited,
+.navlink a:hover,
+.navlink a:active {
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #55acee;
+    transition: background-color 0.4s ease;
+}
+
+.navlink a:hover {
+    transition: background-color 0.8s ease;
+    background-color: #66bdff;
+}
+
+.scoreForm {
+    border: 2px solid #338acc;
+    height: 35px;
+    width: 900px;
+    margin-top: 0px;
+    padding-top: 10px;
+    background-color: #55acee;
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.scoreForm label {
+    display: inline-block;
+    //width: 75px;
+    margin: 0 10px;
+    font-size: 1.2em;
+    float: left;
+    color: white;
+}
+
+.scoreForm input[type=text] {
+    float: left;
+    margin-right: 30px;
+}
+
+.addScoreSubmit {
+    transition: background-color 0.4s ease;
+    display: inline;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 90px;
+    background-color: #55acee;
+    border-radius: 2px;
+    padding: 3px 0px;
+    color: black;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.addScoreSubmit:link,
+.addScoreSubmit:visited,
+.addScoreSubmit:hover,
+.addScoreSubmit:active {
+    color: white;
+}
+
+.addScoreSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #338acc;
+}
+
+.accountForm {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 300px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.accountForm h3 {
+    text-align: center;
+}
+
+.accountForm label {
+    display: inline-block;
+    width: 100px;
+    margin-right: 10px;
+    text-align: right;
+    font-size: 1.2em;
+}
+
+.formSubmit {
+    transition: background-color 0.4s ease;
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 14px;
+    font-size: 1.2em;
+    width: 90px;
+    background-color: #55acee;
+    border-radius: 2px;
+    padding: 3px 0px;
+    color: black;
+    text-decoration: none;
+}
+
+.formSubmit:link,
+.formSubmit:visited,
+.formSubmit:hover,
+.formSubmit:active {
+    color: white;
+}
+
+.formSubmit:hover {
+    transition: background-color 0.4s ease;
+    background-color: #338acc;
+}
+
+#user,
+#pass,
+#pass2 {
+    text-align: center;
+    font-size: 1.1em;
+    width: 180px;
+    border-radius: 6px;
+}
+
+#user:focus,
+#pass:focus,
+#pass2:focus {
+    outline: none;
+    box-shadow: 0px 0px 1px 1px #55acee;
+}
+
+#errorMessage {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
+    text-align: center;
+}
+
+#scores {
+    width: 100%;
+    max-width: 800px;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.score {
+    width: 95%;
+    margin: 0 auto;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 2px solid #55acee;
+    border-radius: 4px;
+    background-color: #55acee;
+    padding: 10px;
+    padding-left: 25px;
+    min-height: 60px;
+    overflow: hidden;
+}
+
+.score:hover {
+    transition: border-color 0.2s ease-out;
+    border-color: rgba(255, 255, 255, 0.8);
+    transition: background-color 2.6s ease-out;
+    background-color: #66bfff;
+}
+
+img.scoreFace {
+    margin-right: 40px;
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+    margin-top: 10px;
+    float: left;
+}
+
+h3.emptyScore {
+    width: 400px;
+    font-size: 1.5em;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 18px;
+}
+
+h3 {
+    margin-right: 40px;
+    font-weight: bold;
+    font-size: 1.5em;
+    display: inline-block;
+}
+
+.score:first-child {
+    margin-top: 10px;
+}
+
+.score:last-child {
+    margin-bottom: 10px;
+}

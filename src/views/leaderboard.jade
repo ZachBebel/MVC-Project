@@ -1,0 +1,23 @@
+extends ./base.jade
+block append style
+  link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login") Hello, #{scores.user}
+    .navlink
+      a(href="/logout") Log out
+  section#scores
+    if !scores || scores.length == 0
+      div.score
+        h3.emptyScore No Scores yet
+    else
+      each val in scores
+        div.score
+          h3.scoreDate Date: 
+            span #{val.createdData}
+          h3.userName User: 
+            span #{val.user}
+          h3.userScore Score: 
+            span #{val.score}
+          button(class="deleteScore", action="/delete", method="POST") Delete
+block scripts

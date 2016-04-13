@@ -5,6 +5,17 @@ var Score = models.Score;
 
 var gamePage = function (req, res) {
 
+    /*
+    // Clear database
+    Score.ScoreModel.remove({}, function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('success');
+        }
+    });
+    */
+
     Score.ScoreModel.findByUser(req.session.account._id, function (err, docs) {
 
         if (err) {
@@ -17,6 +28,7 @@ var gamePage = function (req, res) {
         //return success
         res.render('game', {
             csrfToken: req.csrfToken(),
+            username: req.session.account.username,
             scores: docs
         });
 
@@ -37,6 +49,7 @@ var scoresPage = function (req, res) {
         //return success
         res.render('scores', {
             csrfToken: req.csrfToken(),
+            username: req.session.account.username,
             scores: docs
         });
 
@@ -57,6 +70,7 @@ var leaderboardPage = function (req, res) {
         //return success
         res.render('leaderboard', {
             csrfToken: req.csrfToken(),
+            username: req.session.account.username,
             scores: docs
         });
 
@@ -77,7 +91,8 @@ var addScore = function (req, res) {
     // Notice for the Score user field, we put the ID of the user we stored in req.session from the Account Model’s toAPI method. This is the nice value of storing a user’s data in their session. We can access the session anywhere we can access the request.
     var scoreData = {
         score: req.body.score,
-        user: req.session.account._id
+        user: req.session.account._id,
+        username: req.session.account.username
     };
 
     //create a new object of ScoreModel with the object to save
@@ -99,36 +114,7 @@ var addScore = function (req, res) {
     });
 }
 
-var deleteScore = function (req, res) {
-
-    //dummy JSON to find the specific doc in the database
-    // Notice for the Score user field, we put the ID of the user we stored in req.session from the Account Model’s toAPI method. This is the nice value of storing a user’s data in their session. We can access the session anywhere we can access the request.
-    var scoreData = {
-        score: req.body.score,
-        user: req.session.account._id,
-        date: req.body.date
-    };
-
-    //Score.ScoreModel.remove(scoreData);
-
-    //Delete the score from the database
-    Score.ScoreModel.findOneAndRemove(scoreData, function (err) {
-        if (err) {
-            console.log(err);
-            return res.status(400).json({
-                err: err
-            }); //if error, return it
-        }
-
-        //return success
-        res.json({
-            redirect: '/scores'
-        });
-    });
-}
-
 module.exports.gamePage = gamePage;
 module.exports.scoresPage = scoresPage;
 module.exports.leaderboardPage = leaderboardPage;
 module.exports.addScore = addScore;
-module.exports.deleteScore = deleteScore;

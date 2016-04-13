@@ -45,6 +45,13 @@ var ScoreSchema = new mongoose.Schema({
         ref: 'Account'
     },
 
+    username: {
+        type: String,
+        required: true,
+        trim: true,
+        match: /^[A-Za-z0-9_\-\.]{1,16}$/
+    },
+
     createdData: {
         type: Date,
         default: Date.now
@@ -66,7 +73,9 @@ ScoreSchema.statics.findByUser = function (userId, callback) {
         user: mongoose.Types.ObjectId(userId)
     };
 
-    return ScoreModel.find(search).select("score user createdData").exec(callback);
+    return ScoreModel.find(search).select("score username createdData").sort({
+        createdData: 'descending'
+    }).exec(callback);
 };
 
 //Create the score model based on the schema. You provide it with a custom discriminator (the name of the object type. Can be anything)

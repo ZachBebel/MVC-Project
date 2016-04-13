@@ -3,7 +3,8 @@ block append style
   link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    a(href="/login") Hello, #{scores.user}
+    .navlink
+      a(href="/login") Hello, #{username}
     .navlink
       a(href="/logout") Log out
   section#addScore

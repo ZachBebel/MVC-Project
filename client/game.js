@@ -37,26 +37,4 @@ $(document).ready(function () {
         return false;
     });
 
-    /*
-    $(".deleteScore").on("click", function (e) {
-        e.preventDefault();
-
-        //console.log($(this).siblings(".scoreName")[0]);
-
-        var json = {
-            name: $(this).siblings(".scoreName").children("span").text(),
-            age: $(this).siblings(".scoreAge").children("span").text(),
-            bloodType: $(this).siblings(".scoreBloodType").children("span").text(),
-            _csrf: $("#scoreForm input[name=_csrf]").attr("value")
-        };
-
-        //console.log($("#scoreForm").serialize());
-        //console.log($.param(json));
-
-        sendAjax($(this).attr("action"), $.param(json));
-
-        return false;
-    });
-    */
-
 });

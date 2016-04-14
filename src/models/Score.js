@@ -67,7 +67,7 @@ var ScoreSchema = new mongoose.Schema({
 //They will be able to call this function, but they won't be able to reference any instance variables of that object (or at least accurately)
 //These are used when you want a public function you can call to do a task, not a method that uses or returns instance variables
 //That is, these are used when you don't need an object, just a function to call.
-ScoreSchema.statics.findByUser = function (userId, callback) {
+ScoreSchema.statics.findAllByUser = function (userId, callback) {
 
     var search = {
         user: mongoose.Types.ObjectId(userId)
@@ -77,6 +77,70 @@ ScoreSchema.statics.findByUser = function (userId, callback) {
         createdData: 'descending'
     }).exec(callback);
 };
+
+ScoreSchema.statics.findHighestByUser = function (userId, callback) {
+
+    var search = {
+        user: mongoose.Types.ObjectId(userId)
+    };
+
+    return ScoreModel.find(search).select("score username createdData").sort({
+        score: 'descending'
+    }).limit(1).exec(callback);
+};
+
+ScoreSchema.statics.findAllUsers = function (callback) {
+    /*
+    var search = {
+        user: {
+            $exists: true
+        }
+    };
+    */
+    return ScoreModel.distinct('user').exec(callback);
+};
+
+/*
+ScoreSchema.statics.findAllHighest = function (callback) {
+
+    ScoreSchema.statics.findAllUsers(function (err, docs) {
+
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                err: err
+            }); //if error, return it
+        }
+
+        // Get highscore for each user with a score
+        var scores = [];
+        var user;
+        for (var i = 0; i < docs.length; i += 1) {
+
+            user = docs[i];
+
+            // Get highscore
+            ScoreSchema.statics.findHighestByUser(user, function (err, docs) {
+
+                if (err) {
+                    console.log(err);
+                    return res.status(400).json({
+                        err: err
+                    }); //if error, return it
+                }
+
+                scores.push(docs);
+                console.log("User " + user + ": " + docs);
+            });
+
+        };
+
+        console.log(scores);
+    });
+
+    return ScoreModel.distinct('user').exec(callback);
+};
+*/
 
 //Create the score model based on the schema. You provide it with a custom discriminator (the name of the object type. Can be anything)
 //and the schema to make a model from.

@@ -16,7 +16,7 @@ var gamePage = function (req, res) {
     });
     */
 
-    Score.ScoreModel.findByUser(req.session.account._id, function (err, docs) {
+    Score.ScoreModel.findAllByUser(req.session.account._id, function (err, docs) {
 
         if (err) {
             console.log(err);
@@ -37,7 +37,7 @@ var gamePage = function (req, res) {
 
 var scoresPage = function (req, res) {
 
-    Score.ScoreModel.findByUser(req.session.account._id, function (err, docs) {
+    Score.ScoreModel.findAllByUser(req.session.account._id, function (err, docs) {
 
         if (err) {
             console.log(err);
@@ -45,6 +45,8 @@ var scoresPage = function (req, res) {
                 err: err
             }); //if error, return it
         }
+
+        console.log(docs);
 
         //return success
         res.render('scores', {
@@ -58,7 +60,7 @@ var scoresPage = function (req, res) {
 
 var leaderboardPage = function (req, res) {
 
-    Score.ScoreModel.findByUser(req.session.account._id, function (err, docs) {
+    Score.ScoreModel.findAllUsers(function (err, docs) {
 
         if (err) {
             console.log(err);
@@ -67,14 +69,80 @@ var leaderboardPage = function (req, res) {
             }); //if error, return it
         }
 
+        // Check if logged in
+        var username = "Guest";
+        if (req.session.account) {
+            username = req.session.account.username;
+        }
+
+        // Get highscore for each user with a score
+        var scores = [];
+        var users = docs;
+        var index = 0;
+
+        function loop() {
+            if (index < users.length) {
+
+                // Get highscore
+                Score.ScoreModel.findHighestByUser(users[index], function (err, docs) {
+
+                    if (err) {
+                        console.log(err);
+                        return res.status(400).json({
+                            err: err
+                        }); //if error, return it
+                    }
+
+                    scores.push(docs[0]);
+                    //console.log("User " + users[index] + ": " + docs);
+
+                    // Get next highscore async
+                    index += 1;
+                    loop();
+                });
+
+            } else {
+
+                console.log(scores);
+
+                //return success
+                res.render('leaderboard', {
+                    csrfToken: req.csrfToken(),
+                    username: username,
+                    scores: scores
+                });
+            }
+        }
+
+        loop();
+
+    });
+
+    /*
+    Score.ScoreModel.findAllHighest(function (err, docs) {
+
+        if (err) {
+            console.log(err);
+            return res.status(400).json({
+                err: err
+            }); //if error, return it
+        }
+
+        // Check if logged in
+        var username = "Guest";
+        if (req.session.account) {
+            username = req.session.account.username;
+        }
+
         //return success
         res.render('leaderboard', {
             csrfToken: req.csrfToken(),
-            username: req.session.account.username,
+            username: username,
             scores: docs
         });
 
     });
+    */
 }
 
 var addScore = function (req, res) {

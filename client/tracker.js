@@ -28,7 +28,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         if ($("#score").val() == '') {
-            handleError("All fields are required");
+            handleError("All fields required");
             return false;
         }
 

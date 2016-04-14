@@ -7,6 +7,12 @@ block body
       a(href="/login") Hello, #{username}
     .navlink
       a(href="/logout") Log out
+    .navlink
+      a(href="/tracker") Add Score
+    .navlink
+      a(href="/scores") Scores
+    .navlink
+      a(href="/leaderboard") Leaderboard
   section#scores
     if !scores || scores.length == 0
       div.score
@@ -21,4 +27,4 @@ block body
           h3.userScore Score: 
             span #{val.score}
 block scripts
-  script(src="/assets/game.js")
+  script(src="/assets/tracker.js")

@@ -21,8 +21,8 @@ var router = function (app) { //pass the express app in
     app.get('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signupPage);
     app.post('/signup', mid.requiresSecure, mid.requiresLogout, controllers.Account.signup);
     app.get('/logout', mid.requiresLogin, controllers.Account.logout);
-    app.get('/game', mid.requiresLogin, controllers.Score.gamePage);
-    app.post('/game', mid.requiresLogin, controllers.Score.addScore);
+    app.get('/tracker', mid.requiresLogin, controllers.Score.trackerPage);
+    app.post('/tracker', mid.requiresLogin, controllers.Score.addScore);
     app.get('/scores', mid.requiresLogin, controllers.Score.scoresPage);
     app.get('/leaderboard', controllers.Score.leaderboardPage);
     app.get('/', mid.requiresSecure, mid.requiresLogout, controllers.Account.loginPage);

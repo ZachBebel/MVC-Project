@@ -7,12 +7,18 @@ block body
       a(href="/login") Hello, #{username}
     .navlink
       a(href="/logout") Log out
+    .navlink
+      a(href="/tracker") Add Score
+    .navlink
+      a(href="/scores") Scores
+    .navlink
+      a(href="/leaderboard") Leaderboard
   section#addScore
-    form#scoreForm(class="scoreForm", name="scoreForm", action="/game", method="POST")
+    form#scoreForm(class="scoreForm", name="scoreForm", action="/tracker", method="POST")
       label(for="score") Score:
       input#score(type="text", name="score", placeholder="Score")
       input(type="hidden", name="_csrf", value="#{csrfToken}")
       a#addScoreSubmit(class="addScoreSubmit", href="#") Add Score
-    p#errorMessage
+  p#errorMessage
 block scripts
-  script(src="/assets/game.js")
+  script(src="/assets/tracker.js")

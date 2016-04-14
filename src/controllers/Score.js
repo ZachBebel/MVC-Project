@@ -3,7 +3,7 @@ var models = require('../models');
 
 var Score = models.Score;
 
-var gamePage = function (req, res) {
+var trackerPage = function (req, res) {
 
     /*
     // Clear database
@@ -26,7 +26,7 @@ var gamePage = function (req, res) {
         }
 
         //return success
-        res.render('game', {
+        res.render('tracker', {
             csrfToken: req.csrfToken(),
             username: req.session.account.username,
             scores: docs
@@ -46,7 +46,7 @@ var scoresPage = function (req, res) {
             }); //if error, return it
         }
 
-        console.log(docs);
+        //console.log(docs);
 
         //return success
         res.render('scores', {
@@ -70,7 +70,7 @@ var leaderboardPage = function (req, res) {
         }
 
         // Check if logged in
-        var username = "Guest";
+        var username = "";
         if (req.session.account) {
             username = req.session.account.username;
         }
@@ -193,7 +193,7 @@ var addScore = function (req, res) {
     });
 }
 
-module.exports.gamePage = gamePage;
+module.exports.trackerPage = trackerPage;
 module.exports.scoresPage = scoresPage;
 module.exports.leaderboardPage = leaderboardPage;
 module.exports.addScore = addScore;

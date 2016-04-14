@@ -27,7 +27,7 @@ var login = function (req, res) {
     if (!req.body.username || !req.body.pass) {
         //if not respond with a 400 error (either through json or a web page depending on the client dev)
         return res.status(400).json({
-            error: "All fields required!"
+            error: "All fields required"
         });
     }
 
@@ -45,7 +45,7 @@ var login = function (req, res) {
 
         //return success
         res.json({
-            redirect: '/game'
+            redirect: '/tracker'
         });
 
     });
@@ -58,7 +58,7 @@ var signup = function (req, res) {
     if (!req.body.username || !req.body.pass || !req.body.pass2) {
         //if not respond with a 400 error (either through json or a web page depending on the client dev)
         return res.status(400).json({
-            error: "All fields required!"
+            error: "All fields required"
         });
     }
 
@@ -66,7 +66,7 @@ var signup = function (req, res) {
     if (req.body.pass !== req.body.pass2) {
         //if not respond with a 400 error (either through json or a web page depending on the client dev)
         return res.status(400).json({
-            error: "Passwords do not match!"
+            error: "Passwords do not match"
         });
     }
 
@@ -96,7 +96,7 @@ var signup = function (req, res) {
 
             //return success
             res.json({
-                redirect: '/game'
+                redirect: '/tracker'
             });
         });
 

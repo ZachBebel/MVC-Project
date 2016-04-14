@@ -3,10 +3,26 @@ block append style
   link(rel="stylesheet", type="text/css", href="/assets/style.css")
 block body
   nav
-    .navlink
-      a(href="/login") Hello, #{username}
-    .navlink
-      a(href="/logout") Log out
+    if username == ""
+      .navlink
+        a(href="/login") Hello, Guest
+      .navlink
+        a(href="/login") Login
+      .navlink
+        a(href="/signup") Sign up
+      .navlink
+        a(href="/scores") Leaderboard
+    else
+      .navlink
+        a(href="/login") Hello, #{username}
+      .navlink
+        a(href="/logout") Log out
+      .navlink
+        a(href="/tracker") Add Score
+      .navlink
+        a(href="/scores") Scores
+      .navlink
+        a(href="/leaderboard") Leaderboard
   section#scores
     if !scores || scores.length == 0
       div.score

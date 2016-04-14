@@ -10,7 +10,7 @@ var requiresLogin = function (req, res, next) {
 // add a requiresLogout function that checks if the user is already logged in (we attached an account to their session) and redirects them to the app if so.
 var requiresLogout = function (req, res, next) {
     if (req.session.account) {
-        return res.redirect('/game');
+        return res.redirect('/tracker');
     }
 
     next();

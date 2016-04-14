@@ -100,48 +100,6 @@ ScoreSchema.statics.findAllUsers = function (callback) {
     return ScoreModel.distinct('user').exec(callback);
 };
 
-/*
-ScoreSchema.statics.findAllHighest = function (callback) {
-
-    ScoreSchema.statics.findAllUsers(function (err, docs) {
-
-        if (err) {
-            console.log(err);
-            return res.status(400).json({
-                err: err
-            }); //if error, return it
-        }
-
-        // Get highscore for each user with a score
-        var scores = [];
-        var user;
-        for (var i = 0; i < docs.length; i += 1) {
-
-            user = docs[i];
-
-            // Get highscore
-            ScoreSchema.statics.findHighestByUser(user, function (err, docs) {
-
-                if (err) {
-                    console.log(err);
-                    return res.status(400).json({
-                        err: err
-                    }); //if error, return it
-                }
-
-                scores.push(docs);
-                console.log("User " + user + ": " + docs);
-            });
-
-        };
-
-        console.log(scores);
-    });
-
-    return ScoreModel.distinct('user').exec(callback);
-};
-*/
-
 //Create the score model based on the schema. You provide it with a custom discriminator (the name of the object type. Can be anything)
 //and the schema to make a model from.
 //Look at the model variable definition above for more details.

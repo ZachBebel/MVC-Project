@@ -103,9 +103,20 @@ var leaderboardPage = function (req, res) {
 
             } else {
 
-                console.log(scores);
+                //console.log(scores);
 
-                //return success
+                // Sort scores highest to lowest
+                scores.sort(function (a, b) {
+                    if (a.score > b.score) {
+                        return -1;
+                    } else if (a.score < b.score) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+
+                // Render page
                 res.render('leaderboard', {
                     csrfToken: req.csrfToken(),
                     username: username,
